@@ -77,6 +77,17 @@
   .chip .pin { color: var(--flo); font-family: var(--mono); margin-right: 7px; font-size: 12px; }
   .chip:hover .pin { color: var(--ink); }
 
+  /* ESCROW SAFETY */
+  .safety { background: var(--ink-soft); }
+  .safety-intro { font-size: 17px; font-weight: 300; max-width: 600px; margin-top: 18px; color: rgba(243,240,233,0.72); line-height: 1.55; }
+  .steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 22px; margin-top: 48px; }
+  .step .n { font-family: var(--mono); font-size: 13px; color: var(--flo); border: 1px solid var(--flo); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-bottom: 16px; }
+  .step h4 { font-size: 15px; margin-bottom: 7px; font-weight: 600; }
+  .step p { font-size: 13px; color: rgba(243,240,233,0.62); font-weight: 300; line-height: 1.5; }
+  .trust-line { margin-top: 48px; padding-top: 26px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 12px; letter-spacing: 0.4px; color: rgba(243,240,233,0.55); display: flex; flex-wrap: wrap; gap: 24px; }
+  .trust-line span { display: flex; align-items: center; gap: 8px; }
+  .check { color: var(--flo); }
+
   /* FORM CTA */
   .cta { background: linear-gradient(160deg,#0a9d5e 0%,#0a0e0d 76%); padding: 90px 0; }
   .cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
@@ -112,6 +123,7 @@
     .vgrid { grid-template-columns: 1fr; }
     .growth-item { grid-template-columns: 1fr; gap: 6px; }
     .cta-grid { grid-template-columns: 1fr; gap: 38px; }
+    .steps { grid-template-columns: 1fr 1fr; }
     .hero { padding: 56px 0 36px; }
     section { padding: 54px 0; }
   }
@@ -194,6 +206,43 @@
     </div>
   </section>
 
+  <!-- ESCROW SAFETY -->
+  <section class="safety">
+    <div class="wrap">
+      <p class="sec-label reveal">Safe transfer</p>
+      <h2 class="sec-title reveal">Your money is held in escrow until the domain is in your hands.</h2>
+      <p class="safety-intro reveal">The sale runs through Escrow.com, a neutral third party. Funds are never released to the seller until you confirm runflo.ai is fully transferred to your account. Neither side can be shortchanged.</p>
+      <div class="steps reveal">
+        <div class="step">
+          <div class="n">1</div>
+          <h4>You fund escrow</h4>
+          <p>Your payment goes to Escrow.com, not the seller. It sits in a protected account.</p>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <h4>Seller is cleared to transfer</h4>
+          <p>Only once escrow confirms your funds are secured does the seller push the domain.</p>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <h4>You verify ownership</h4>
+          <p>You check runflo.ai is in your registrar account and under your full control.</p>
+        </div>
+        <div class="step">
+          <div class="n">4</div>
+          <h4>Funds release</h4>
+          <p>Payment is released to the seller only after you confirm. No transfer, no payout.</p>
+        </div>
+      </div>
+      <div class="trust-line reveal">
+        <span><span class="check">✓</span> Neutral third party</span>
+        <span><span class="check">✓</span> Funds held, not forwarded</span>
+        <span><span class="check">✓</span> Paid only on confirmed transfer</span>
+        <span><span class="check">✓</span> Buyer protected end to end</span>
+      </div>
+    </div>
+  </section>
+
   <!-- FORM CTA -->
   <section class="cta" id="acquire">
     <div class="wrap">
@@ -204,17 +253,11 @@
           <div class="price-big reveal">Buy now · <span>$6,300</span></div>
         </div>
         <div class="reveal">
-          <!-- ============================================================
-               SETUP (2 min, no terminal needed):
-               1. Go to https://formspree.io → sign up free
-               2. Create a form, set the receiving email to:
-                  akram.patel@saasfoundermedia.com
-               3. Copy your form's endpoint (looks like https://formspree.io/f/abcdwxyz)
-               4. Paste it below replacing YOUR_FORM_ID
-               That's it — submissions then arrive in your inbox.
-          ============================================================ -->
-          <form id="acquireForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-            <input type="hidden" name="_subject" value="runflo.ai acquisition inquiry">
+          <!-- Web3Forms is configured. Submissions arrive at the email tied to this access key. -->
+          <form id="acquireForm" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="37328bac-fbd0-4fc5-ad1a-64568e344230">
+            <input type="hidden" name="subject" value="runflo.ai acquisition inquiry">
+            <input type="hidden" name="from_name" value="runflo.ai sale page">
             <div class="field">
               <label for="name">Name</label>
               <input id="name" type="text" name="name" required placeholder="Your full name">
@@ -231,7 +274,6 @@
                   <option>Wire transfer</option>
                   <option>Credit card</option>
                   <option>PayPal</option>
-                  <option>Escrow.com balance</option>
                   <option>Other</option>
                 </select>
               </div>
@@ -259,8 +301,8 @@
 
   <div class="wrap">
     <footer>
-      <div>runflo.ai · Premium AI domain · 2026</div>
-      <div><a href="mailto:akram.patel@saasfoundermedia.com">akram.patel@saasfoundermedia.com</a></div>
+      <div>A SaaS Founder Media project · Merakime Solutions</div>
+      <div>runflo.ai · Escrow-protected transfer · 2026</div>
     </footer>
   </div>
 
@@ -275,7 +317,8 @@
     // AJAX submit so the user stays on-page and sees a confirmation
     const form = document.getElementById('acquireForm');
     form.addEventListener('submit', async (ev) => {
-      if (form.action.includes('YOUR_FORM_ID')) return; // not configured yet → let it post normally
+      const keyField = form.querySelector('input[name="access_key"]');
+      if (!keyField || keyField.value.length < 10) { ev.preventDefault(); alert('Form access key missing.'); return; }
       ev.preventDefault();
       try {
         const res = await fetch(form.action, {
